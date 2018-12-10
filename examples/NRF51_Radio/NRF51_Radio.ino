@@ -5,6 +5,8 @@
 */
 
 #include "NRF51_Radio_library.h"
+#include <Adafruit_Microbit.h>
+
 
 
 NRF51_Radio MicrobitRadio = NRF51_Radio();
@@ -41,7 +43,7 @@ void loop() {
 	digitalWrite(LED, HIGH);
 	
 	static long currentMillis;
-
+  
 
 	FrameBuffer* myData = MicrobitRadio.recv();
 	if (myData != NULL) {
@@ -73,9 +75,9 @@ void loop() {
 		}
 	}
 
-	delay(10);
+	delay(100);
 	digitalWrite(LED, LOW);
-	delay(10);
+	delay(100);
 }
 
 //This method demonstrates 1) using a library 2) using user types as function params
