@@ -4,7 +4,7 @@ The nrf52_radio library API's are the same as the nrf51_radio ones. With this ad
 
 Note: this library is not battletested. Benefit of using simple 2.4 GHz radio is that you dont need to hassle with proprietary (or open source) Bluetooth/BLE SoftDevices which are often also flash memory heavy. Many projects dont need the heavy security and other protocol overhead which often come at a steep learning curve. If your project needs simple send and receive bytes, to one or even multiple devices, this library is useful.
 
-
+```
 #include "NRF52_Radio_library.h"
 NRF52_Radio MicrobitRadio = NRF52_Radio();
 MicrobitRadio.enable();
@@ -29,7 +29,7 @@ if (myData != NULL) {
 	uint8_t data1 = myData->payload[1]; 
 	delete myData;
 }
-
+```
 
 
 # NRF51_Radio_library
