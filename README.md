@@ -1,3 +1,37 @@
+# NRF52_Radio_library
+
+The nrf52_radio library API's are the same as the nrf51_radio ones. With this addition, it is now possible to control the radio of the nrf52's such as the one in the microbit V2. An example can be found to let a Microbit V1 (nrf51) and V2 (nrf52) communicate over radio.
+
+Note: this library is not battletested. Benefit of using simple 2.4 GHz radio is that you dont need to hassle with proprietary (or open source) Bluetooth/BLE SoftDevices which are often also flash memory heavy. Many projects dont need the heavy security and other protocol overhead which often come at a steep learning curve. If your project needs simple send and receive bytes, to one or even multiple devices, this library is useful.
+
+
+#include "NRF52_Radio_library.h"
+NRF52_Radio MicrobitRadio = NRF52_Radio();
+MicrobitRadio.enable();
+
+SENDING
+FrameBuffer *myDataSendData;
+uint8_t msg[] = { 0x00, 0x00}; ; //max 32 
+
+myDataSendData = new FrameBuffer();
+myDataSendData->length = 5;
+myDataSendData->group = 10;
+myDataSendData->version = 12;
+myDataSendData->protocol = 14;
+memcpy(myDataSendData->payload, &msg, sizeof(uint8_t) *2);
+
+MicrobitRadio.send(myDataSendData);
+	
+RECEIVING
+FrameBuffer* myData = MicrobitRadio.recv();
+if (myData != NULL) {
+	uint8_t data0 = myData->payload[0]; 
+	uint8_t data1 = myData->payload[1]; 
+	delete myData;
+}
+
+
+
 # NRF51_Radio_library
 
 This library is based on the Driver from Landcaster University microbit-dal Radio implementation.
